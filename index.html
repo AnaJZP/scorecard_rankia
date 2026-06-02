@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scorecard regulatorio | Premios Rankia 2026</title>
+  <style>
+    :root{
+      --bg:#f6f7fb; --card:#ffffff; --ink:#152033; --muted:#667085; --line:#e6e8ef;
+      --brand:#182b5f; --brand2:#5067ff; --green:#16794d; --amber:#b76e00; --red:#b42318; --blue:#2452a5;
+      --gold:#c69324; --silver:#8792a2; --bronze:#a9682a; --soft:#eef2ff;
+    }
+    *{box-sizing:border-box}
+    body{margin:0; font-family:Inter,Segoe UI,Roboto,Arial,sans-serif; background:linear-gradient(180deg,#eef2ff 0%,var(--bg) 260px); color:var(--ink)}
+    header{padding:42px 6vw 24px; max-width:1280px; margin:auto}
+    .eyebrow{font-weight:800; color:var(--brand2); letter-spacing:.09em; text-transform:uppercase; font-size:12px}
+    h1{font-size:clamp(30px,4vw,52px); line-height:1.03; margin:10px 0 12px; color:var(--brand)}
+    .lead{font-size:17px; line-height:1.6; color:#344054; max-width:960px}
+    .notice{margin-top:18px; border:1px solid #c7d7fe; background:#f2f6ff; border-radius:18px; padding:16px 18px; line-height:1.55; color:#20305a}
+    .wrap{max-width:1280px; margin:0 auto; padding:0 6vw 52px}
+    .controls{display:grid; grid-template-columns:1.4fr repeat(3, minmax(160px,.5fr)); gap:12px; margin:24px 0 18px; position:sticky; top:0; background:rgba(246,247,251,.92); backdrop-filter:blur(10px); padding:12px 0; z-index:5}
+    input,select{width:100%; border:1px solid var(--line); border-radius:14px; padding:12px 14px; font-size:14px; color:var(--ink); background:white; outline:none}
+    .kpis{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin:14px 0 22px}
+    .kpi{background:var(--card); border:1px solid var(--line); border-radius:18px; padding:16px; box-shadow:0 10px 26px rgba(26,33,54,.05)}
+    .kpi b{display:block; font-size:27px; color:var(--brand)} .kpi span{color:var(--muted); font-size:13px}
+    .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+    .card{background:var(--card); border:1px solid var(--line); border-radius:22px; padding:18px; box-shadow:0 10px 26px rgba(26,33,54,.06); display:flex; flex-direction:column; min-height:358px}
+    .top{display:flex; justify-content:space-between; gap:12px; align-items:flex-start}
+    .name{font-weight:900; font-size:21px; color:#101828}
+    .cat{font-size:12px; color:var(--muted); margin-top:4px; line-height:1.35}
+    .medal{border-radius:999px; padding:7px 10px; color:white; font-weight:800; font-size:12px; white-space:nowrap}.m1{background:var(--gold)}.m2{background:var(--silver)}.m3{background:var(--bronze)}
+    .score{display:flex; align-items:center; gap:12px; margin:16px 0 12px; padding:13px; border-radius:16px; background:#fafbff; border:1px solid var(--line)}
+    .ring{--p:0; width:64px; height:64px; border-radius:50%; background:conic-gradient(var(--score-color) calc(var(--p)*1%), #e9edf5 0); display:grid; place-items:center; flex:0 0 auto}
+    .ring span{display:grid; place-items:center; width:48px; height:48px; border-radius:50%; background:white; font-weight:900; color:var(--ink)}
+    .scoretxt b{display:block; color:var(--score-color); font-size:14px}.scoretxt span{font-size:12px; color:var(--muted); line-height:1.35}
+    .chips{display:flex; flex-wrap:wrap; gap:8px; margin:10px 0}.chip{font-size:12px; padding:6px 9px; border-radius:999px; background:#f2f4f7; color:#344054; border:1px solid #eaecf0}.chip.mx{background:#ecfdf3;color:#067647;border-color:#abefc6}.chip.nomx{background:#fff7ed;color:#b54708;border-color:#fed7aa}.chip.low{background:#fef3f2;color:#b42318;border-color:#fecdca}
+    .row{margin-top:10px}.label{font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:#98a2b3; font-weight:800}.value{font-size:14px; line-height:1.45; margin-top:3px;color:#344054}.value a{color:var(--brand2);font-weight:700;text-decoration:none}.value a:hover{text-decoration:underline}
+    .foot{margin-top:auto; padding-top:12px; font-size:12px; color:var(--muted); border-top:1px dashed var(--line)}
+    .hidden{display:none!important}
+    .section{margin-top:34px; background:white; border:1px solid var(--line); border-radius:22px; padding:22px; line-height:1.55; color:#344054}.section h2{margin:0 0 8px; color:var(--brand)}
+    table{border-collapse:collapse; width:100%; font-size:14px; margin-top:12px} th,td{border-bottom:1px solid var(--line); padding:10px; text-align:left; vertical-align:top} th{color:var(--brand); background:#f8f9ff}
+    @media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}.controls{grid-template-columns:1fr 1fr}.kpis{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:640px){header,.wrap{padding-left:18px;padding-right:18px}.grid{grid-template-columns:1fr}.controls{grid-template-columns:1fr; position:static}.kpis{grid-template-columns:1fr}.card{min-height:auto}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="eyebrow">Premios Rankia 2026 · Scorecard regulatorio</div>
+  <h1>¿Qué tan regulados están los brokers y entidades galardonadas?</h1>
+  <p class="lead">Scorecard comparativo de los ganadores vinculados con intermediación, inversión, fintechs y mercados. Se eliminaron personas, divulgadores, analistas y academias porque no tienen una regulación financiera comparable.</p>
+  <div class="notice"><strong>Lectura clave:</strong> “Regulado fuera de México” no significa que la entidad esté supervisada por la CNBV para clientes mexicanos. En brokers internacionales, la protección depende de la entidad legal con la que se abra la cuenta, el país de residencia y los términos contractuales.</div>
+</header>
+<main class="wrap">
+  <div class="controls">
+    <input id="q" placeholder="Buscar broker, regulador o instrumento…" />
+    <select id="type"><option value="">Todos los tipos</option><option>Broker internacional</option><option>Casa de bolsa / gestora México</option><option>Fintech inversión</option><option>Mercado de derivados</option></select>
+    <select id="mx"><option value="">Regulación México: todos</option><option value="Sí">Sí, México</option><option value="No">No México</option><option value="No clara">No clara</option></select>
+    <select id="score"><option value="">Score: todos</option><option value="5">5 · Muy alto</option><option value="4">4 · Alto</option><option value="3">3 · Medio</option><option value="2">2 · Bajo</option><option value="1">1 · No claro</option></select>
+  </div>
+  <div class="kpis">
+    <div class="kpi"><b id="kTotal">0</b><span>entidades con score</span></div>
+    <div class="kpi"><b id="kMx">0</b><span>reguladas en México</span></div>
+    <div class="kpi"><b id="kNoMx">0</b><span>reguladas fuera de México</span></div>
+    <div class="kpi"><b id="kAvg">0.0</b><span>score promedio visible</span></div>
+  </div>
+  <section id="cards" class="grid"></section>
+  <section class="section">
+    <h2>Criterio de score regulatorio</h2>
+    <table><thead><tr><th>Score</th><th>Interpretación</th></tr></thead><tbody>
+      <tr><td><strong>5</strong></td><td>Entidad mexicana autorizada/supervisada por CNBV o mercado mexicano regulado; aplica marco local.</td></tr>
+      <tr><td><strong>4</strong></td><td>Regulación internacional fuerte o mercado reconocido, pero no supervisado por CNBV para clientes mexicanos.</td></tr>
+      <tr><td><strong>3</strong></td><td>Regulación múltiple o mixta, con posible asignación a entidades offshore según residencia.</td></tr>
+      <tr><td><strong>2</strong></td><td>Regulación principalmente offshore o de menor protección relativa para el inversionista minorista.</td></tr>
+      <tr><td><strong>1</strong></td><td>No se encontró evidencia clara de autorización como entidad de inversión regulada para el producto evaluado.</td></tr>
+    </tbody></table>
+  </section>
+  <section class="section">
+    <h2>Notas metodológicas</h2>
+    <p>Este tablero es informativo, no constituye recomendación de inversión ni asesoría legal. Antes de abrir una cuenta, conviene verificar directamente el contrato, la entidad legal, el regulador asignado, el esquema de custodia, la protección de saldo negativo, los costos, la disponibilidad para residentes de México y las restricciones por producto.</p>
+    <p>Se excluyeron: divulgadores, analistas, academias de formación, cTrader y ProRealTime como comparables directos, porque son personas, formación o tecnología/plataforma y no necesariamente intermediarios regulados que custodien recursos del cliente.</p>
+  </section>
+</main>
+<script>
+const data = [
+ {name:'XTB',pos:'🥇 Primer lugar',cat:'Mejor bróker internacional para acciones',type:'Broker internacional',mx:'No',score:3,reg:'XTB Group: KNF en Polonia para XTB S.A.; para entidad internacional se menciona FSC Belice.',inst:'Acciones, ETFs, CFDs sobre índices, forex, materias primas y otros subyacentes según entidad.',note:'No se identificó autorización CNBV para operar como casa de bolsa en México.',src:'https://www.xtb.com/int/legal-information'},
+ {name:'Interactive Brokers',pos:'🥈 Segundo lugar',cat:'Mejor bróker internacional para acciones',type:'Broker internacional',mx:'No',score:4,reg:'Interactive Brokers LLC: SEC, CFTC, FINRA, NFA/SIPC en EE. UU. según entidad.',inst:'Acciones, ETFs, opciones, futuros, divisas, bonos y fondos globales.',note:'Alto estándar regulatorio internacional; no es casa de bolsa mexicana CNBV.',src:'https://www.interactivebrokers.com/en/general/about/commoditySegregationDisclosure.php'},
+ {name:'eToro',pos:'🥉 Tercer lugar',cat:'Mejor bróker internacional para acciones',type:'Broker internacional',mx:'No',score:3,reg:'Entidades reguladas por CySEC, FCA, ASIC y otras jurisdicciones.',inst:'Acciones, ETFs, criptoactivos, CFDs y copy trading según país/entidad.',note:'No se identificó regulación CNBV para clientes mexicanos.',src:'https://www.etoro.com/es/customer-service/regulation-license/'},
+ {name:'Windsor Brokers',pos:'🥇 Primer lugar',cat:'Mejor bróker institucional',type:'Broker internacional',mx:'No',score:2,reg:'Windsor Brokers International Ltd: FSA Seychelles. Otras entidades pueden variar por país.',inst:'CFDs sobre forex, índices, commodities, metales, acciones y otros derivados.',note:'Principal fuente pública para entidad internacional apunta a regulación offshore.',src:'https://windsorbrokers.com/'},
+ {name:'ATFX',pos:'🥈 Segundo lugar',cat:'Mejor bróker institucional',type:'Broker internacional',mx:'No',score:3,reg:'Entidades reguladas por FCA, FSCA y ASIC, entre otras, según jurisdicción.',inst:'Forex, CFDs sobre acciones, índices, materias primas y otros subyacentes.',note:'Verificar qué entidad contractual aplica para México.',src:'https://www.atfxcapital.com/en/about-us/atfx-regulators'},
+ {name:'Forex.com',pos:'🥉 Tercer lugar / 🥈 Forex / 🥉 Atención',cat:'Bróker institucional, Forex y servicio al cliente',type:'Broker internacional',mx:'No',score:4,reg:'FOREX.com US: FCM/RFED registrado ante CFTC y miembro NFA; entidad global puede operar bajo CIMA u otra.',inst:'Forex y CFDs en jurisdicciones donde estén permitidos; plataformas de trading.',note:'No es casa de bolsa mexicana; productos dependen de país y entidad.',src:'https://www.forex.com/es-us/about-us/regulation/'},
+ {name:'BlackBull',pos:'🥇 Primer lugar / 🥉 Ejecución',cat:'Mejor bróker para operar Forex y ejecución',type:'Broker internacional',mx:'No',score:2,reg:'BBG Limited / BlackBull Markets: FSA Seychelles; también comunica presencia/licencia FMA en Nueva Zelanda.',inst:'Forex, CFDs, metales, commodities, índices, acciones y futuros según plataforma.',note:'Para residentes internacionales puede aplicar entidad Seychelles.',src:'https://blackbull.com/'},
+ {name:'FxPro',pos:'🥉 Tercer lugar',cat:'Mejor bróker para operar Forex',type:'Broker internacional',mx:'No',score:3,reg:'FxPro Global Markets Ltd: SCB Bahamas; grupo con FCA, CySEC, FSCA según entidad.',inst:'CFDs sobre forex, índices, metales, energías, acciones y futuros.',note:'La protección depende de la entidad que abra la cuenta.',src:'https://www.fxpro.com/about/licences'},
+ {name:'EC Markets',pos:'🥇 Ejecución / 🥉 CFDs',cat:'Ejecución de órdenes y CFDs',type:'Broker internacional',mx:'No',score:3,reg:'Entidades con FSA Seychelles, FSC Mauricio, ASIC, FMA Nueva Zelanda y FSCA Sudáfrica según sitio.',inst:'Forex, metales, petróleo, índices globales y cripto-CFDs.',note:'Verificar entidad aplicable; no se identificó regulación CNBV.',src:'https://www.ecmarkets.sc/'},
+ {name:'Capital.com',pos:'🥈 Segundo lugar',cat:'Mejor bróker en ejecución de órdenes',type:'Broker internacional',mx:'No',score:3,reg:'Entidades reguladas por CySEC; también se informa ASIC/FCA/SCB según entidad.',inst:'CFDs, acciones/fracciones o share dealing en ciertos países, índices, FX, commodities.',note:'No se identificó regulación CNBV para clientes mexicanos.',src:'https://capital.com/en-eu/terms-and-policies/regulations'},
+ {name:'XM',pos:'🥇 CFDs / 🥈 Atención',cat:'Mejor bróker de CFDs y atención al cliente',type:'Broker internacional',mx:'No',score:3,reg:'Trading Point of Financial Instruments Ltd: CySEC licencia 120/10; otras entidades incluyen FSC Belice.',inst:'CFDs sobre forex, índices, acciones, commodities, metales y energías.',note:'La entidad asignada puede cambiar por residencia.',src:'https://www.xm.com/es/regulation'},
+ {name:'Tradeview',pos:'🥈 Segundo lugar',cat:'Mejor bróker de CFDs',type:'Broker internacional',mx:'No',score:3,reg:'Tradeview Ltd: CIMA; sitio también menciona MFSA y Labuan FSA para oficinas/entidades.',inst:'Forex, CFDs, acciones, futuros, commodities, índices y cripto según entidad.',note:'No se identificó regulación CNBV.',src:'https://www.tvmarkets.com/en/faq/privacy-and-security/is-tradeview-markets-regulated/'},
+ {name:'Exness',pos:'🥇 Primer lugar',cat:'Mejor servicio de atención al cliente',type:'Broker internacional',mx:'No',score:3,reg:'Grupo con licencias CySEC, FCA, FSA Seychelles, FSCA, CBCS, FSC BVI/Mauricio, CMA Kenia, JSC, entre otras.',inst:'Forex, metales, índices, commodities, acciones y cripto-CFDs según país.',note:'La regulación efectiva depende de la entidad del contrato.',src:'https://www.exness.com/es/regulation/'},
+ {name:'XS.com',pos:'🥇 Primer lugar',cat:'Mejor plataforma de inversión',type:'Broker internacional',mx:'No',score:3,reg:'XS: FSA Seychelles, ASIC, CySEC, LFSA, FSCA y FSC Mauricio según entidad.',inst:'Forex, CFDs, metales, energías, índices, acciones y otros derivados.',note:'No se identificó regulación CNBV.',src:'https://www.xs.com/es/company/regulations/'},
+ {name:'GBM Casa de Bolsa',pos:'🥇 Primer lugar',cat:'Mejor casa de bolsa',type:'Casa de bolsa / gestora México',mx:'Sí',score:5,reg:'Grupo Bursátil Mexicano, S.A. de C.V., Casa de Bolsa; entidad regulada en México.',inst:'Acciones, ETFs, fondos, instrumentos de deuda y productos bursátiles disponibles en plataforma.',note:'Aplica marco regulatorio mexicano para casa de bolsa.',src:'https://gbm.com/'},
+ {name:'Actinver Casa de Bolsa',pos:'🥈 Segundo lugar',cat:'Mejor casa de bolsa',type:'Casa de bolsa / gestora México',mx:'Sí',score:5,reg:'Institución financiera y casa de bolsa regulada en México.',inst:'Fondos, mercado de capitales, deuda, derivados, banca privada y servicios de inversión.',note:'Aplica marco regulatorio mexicano para casa de bolsa.',src:'https://actinver.com/que-es-casa-de-bolsa'},
+ {name:'Kapital',pos:'🥉 Casa de bolsa / 🥇 Fintech',cat:'Casa de bolsa y fintech de inversión',type:'Fintech inversión',mx:'No clara',score:1,reg:'No se encontró evidencia pública suficiente de autorización CNBV específica como casa de bolsa o entidad de inversión comparable.',inst:'Soluciones financieras, crédito empresarial y servicios para negocios; confirmar producto exacto de inversión.',note:'Requiere verificación directa en padrón CNBV según razón social y producto.',src:'https://kapital.com/'},
+ {name:'Fintual México',pos:'🥈 Segundo lugar',cat:'Mejor fintech de inversión',type:'Fintech inversión',mx:'Sí',score:5,reg:'Fintual México comunica que sus servicios de inversión están supervisados por CNBV.',inst:'Portafolios y fondos de inversión para objetivos de ahorro/inversión.',note:'Confirmar sociedad operadora/distribuidora y contrato antes de invertir.',src:'https://fintual.mx/fintual-es-seguro/'},
+ {name:'Monific',pos:'🥉 Tercer lugar',cat:'Mejor fintech de inversión',type:'Fintech inversión',mx:'Sí',score:4,reg:'Institución de Financiamiento Colectivo autorizada por CNBV bajo Ley Fintech; autorización P160/2021.',inst:'Financiamiento colectivo ligado a proyectos inmobiliarios/turísticos y modelos de inversión colectiva.',note:'No es broker tradicional; riesgo propio de crowdfunding/proyectos.',src:'https://monific.com/regulacion'},
+ {name:'Banorte Asset Management',pos:'🥇 Primer lugar',cat:'Mejor gestora de fondos',type:'Casa de bolsa / gestora México',mx:'Sí',score:5,reg:'Operadora de Fondos Banorte, S.A. de C.V., Sociedad Operadora de Fondos de Inversión, Grupo Financiero Banorte.',inst:'Fondos de inversión de deuda, renta variable, estrategias conservadoras y temáticas según prospectos.',note:'Fondos autorizados y regulados por CNBV.',src:'https://www.banorte.com/Personal/Ahorro-e-Inversion/Fondos-de-Inversion.html'},
+ {name:'CME Group',pos:'🥇 Primer lugar',cat:'Mejor mercado de derivados',type:'Mercado de derivados',mx:'No',score:4,reg:'CME, CBOT, NYMEX y COMEX son Designated Contract Markets registrados y regulados por CFTC.',inst:'Futuros y opciones sobre tasas, índices, FX, energía, metales, agricultura, cripto y otros.',note:'Mercado de derivados, no broker minorista.',src:'https://www.cmegroup.com/education/courses/market-regulation/overview/cme-group-rules-and-regulation-overview'},
+ {name:'MexDer',pos:'🥈 Segundo lugar',cat:'Mejor mercado de derivados',type:'Mercado de derivados',mx:'Sí',score:5,reg:'Mercado mexicano de derivados estandarizados, con marco SHCP, Banco de México y CNBV.',inst:'Futuros y opciones listados en México; cámara de compensación Asigna.',note:'Mercado local regulado; no es broker.',src:'https://www.mexder.com.mx/wb3/wb/MEX/camara_compensacion'},
+ {name:'Cboe Global Markets',pos:'🥉 Tercer lugar',cat:'Mejor mercado de derivados',type:'Mercado de derivados',mx:'No',score:4,reg:'Red global de exchanges; regulación depende de cada subsidiaria/mercado en EE. UU., Europa y Asia-Pacífico.',inst:'Opciones, futuros, renta variable, FX y productos de volatilidad como VIX.',note:'Mercado/exchange, no broker minorista.',src:'https://www.cboe.com/en/about/'}
+];
+const cards=document.getElementById('cards');
+function color(score){return score>=5?'#16794d':score===4?'#2452a5':score===3?'#b76e00':score===2?'#c2410c':'#b42318'}
+function status(score){return score>=5?'Muy alto':score===4?'Alto':score===3?'Medio':score===2?'Bajo':'No claro'}
+function render(){
+  const q=document.getElementById('q').value.toLowerCase(); const t=document.getElementById('type').value; const mx=document.getElementById('mx').value; const sc=document.getElementById('score').value;
+  const filtered=data.filter(d=>{const hay=(d.name+d.cat+d.type+d.reg+d.inst+d.note).toLowerCase(); return (!q||hay.includes(q))&&(!t||d.type===t)&&(!mx||d.mx===mx)&&(!sc||String(d.score)===sc)});
+  cards.innerHTML=filtered.map(d=>`<article class="card" data-score="${d.score}">
+    <div class="top"><div><div class="name">${d.name}</div><div class="cat">${d.cat}</div></div><div class="medal ${d.pos.includes('🥇')?'m1':d.pos.includes('🥈')?'m2':'m3'}">${d.pos}</div></div>
+    <div class="score" style="--score-color:${color(d.score)}"><div class="ring" style="--p:${d.score*20}; --score-color:${color(d.score)}"><span>${d.score}/5</span></div><div class="scoretxt"><b>${status(d.score)} · score regulatorio</b><span>${d.mx==='Sí'?'Regulado en México':d.mx==='No'?'No regulado por CNBV / regulación fuera de México':'Regulación mexicana no clara'}</span></div></div>
+    <div class="chips"><span class="chip">${d.type}</span><span class="chip ${d.mx==='Sí'?'mx':d.mx==='No'?'nomx':'low'}">México: ${d.mx}</span></div>
+    <div class="row"><div class="label">Regulador / entidad</div><div class="value">${d.reg}</div></div>
+    <div class="row"><div class="label">Instrumentos principales</div><div class="value">${d.inst}</div></div>
+    <div class="row"><div class="label">Observación</div><div class="value">${d.note}</div></div>
+    <div class="foot">Fuente base: <a href="${d.src}" target="_blank" rel="noopener">sitio regulatorio / corporativo</a></div>
+  </article>`).join('');
+  document.getElementById('kTotal').textContent=filtered.length;
+  document.getElementById('kMx').textContent=filtered.filter(d=>d.mx==='Sí').length;
+  document.getElementById('kNoMx').textContent=filtered.filter(d=>d.mx==='No').length;
+  document.getElementById('kAvg').textContent=filtered.length?(filtered.reduce((a,b)=>a+b.score,0)/filtered.length).toFixed(1):'0.0';
+}
+['q','type','mx','score'].forEach(id=>document.getElementById(id).addEventListener('input',render));
+render();
+</script>
+</body>
+</html>
