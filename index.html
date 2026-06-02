@@ -4,51 +4,113 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Scorecard regulatorio | Premios Rankia 2026</title>
+  <meta name="description" content="Scorecard comparativo regulatorio de brokers, casas de bolsa, fintechs y mercados galardonados en Premios Rankia 2026. Por Ana Lorena Jiménez Preciado." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root{
       --bg:#f6f7fb; --card:#ffffff; --ink:#152033; --muted:#667085; --line:#e6e8ef;
       --brand:#182b5f; --brand2:#5067ff; --green:#16794d; --amber:#b76e00; --red:#b42318; --blue:#2452a5;
       --gold:#c69324; --silver:#8792a2; --bronze:#a9682a; --soft:#eef2ff;
+      --shadow-sm:0 1px 3px rgba(24,43,95,.06);
+      --shadow-md:0 10px 26px rgba(26,33,54,.06);
+      --shadow-lg:0 20px 40px rgba(24,43,95,.10);
+      --radius:22px;
     }
-    *{box-sizing:border-box}
-    body{margin:0; font-family:Inter,Segoe UI,Roboto,Arial,sans-serif; background:linear-gradient(180deg,#eef2ff 0%,var(--bg) 260px); color:var(--ink)}
-    header{padding:42px 6vw 24px; max-width:1280px; margin:auto}
+    *{box-sizing:border-box; margin:0}
+    body{font-family:'Inter',system-ui,-apple-system,sans-serif; background:linear-gradient(180deg,#e8edff 0%,#f0f2fa 220px,var(--bg) 500px); color:var(--ink); -webkit-font-smoothing:antialiased}
+
+    /* ── Header ── */
+    header{padding:48px 6vw 28px; max-width:1280px; margin:auto; position:relative}
+    .header-top{display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; flex-wrap:wrap; gap:12px}
     .eyebrow{font-weight:800; color:var(--brand2); letter-spacing:.09em; text-transform:uppercase; font-size:12px}
-    h1{font-size:clamp(30px,4vw,52px); line-height:1.03; margin:10px 0 12px; color:var(--brand)}
-    .lead{font-size:17px; line-height:1.6; color:#344054; max-width:960px}
-    .notice{margin-top:18px; border:1px solid #c7d7fe; background:#f2f6ff; border-radius:18px; padding:16px 18px; line-height:1.55; color:#20305a}
+    .author-badge{display:inline-flex; align-items:center; gap:8px; background:linear-gradient(135deg,#f0f4ff,#e8edff); border:1px solid #c7d7fe; border-radius:999px; padding:8px 16px 8px 12px; font-size:13px; color:var(--brand); font-weight:700; transition:all .3s ease}
+    .author-badge:hover{background:linear-gradient(135deg,#e0e8ff,#d4ddff); box-shadow:0 4px 16px rgba(80,103,255,.15); transform:translateY(-1px)}
+    .author-badge svg{flex-shrink:0}
+    h1{font-size:clamp(28px,4vw,48px); line-height:1.08; margin:0 0 14px; color:var(--brand); font-weight:900; letter-spacing:-.02em}
+    .lead{font-size:17px; line-height:1.65; color:#344054; max-width:960px}
+    .notice{margin-top:20px; border:1px solid #c7d7fe; background:linear-gradient(135deg,#f2f6ff,#eef2ff); border-radius:18px; padding:16px 20px; line-height:1.55; color:#20305a; font-size:15px}
+
+    /* ── Controls ── */
     .wrap{max-width:1280px; margin:0 auto; padding:0 6vw 52px}
-    .controls{display:grid; grid-template-columns:1.4fr repeat(3, minmax(160px,.5fr)); gap:12px; margin:24px 0 18px; position:sticky; top:0; background:rgba(246,247,251,.92); backdrop-filter:blur(10px); padding:12px 0; z-index:5}
-    input,select{width:100%; border:1px solid var(--line); border-radius:14px; padding:12px 14px; font-size:14px; color:var(--ink); background:white; outline:none}
+    .controls{display:grid; grid-template-columns:1.4fr repeat(3, minmax(160px,.5fr)); gap:12px; margin:24px 0 18px; position:sticky; top:0; background:rgba(246,247,251,.88); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); padding:14px 0; z-index:5; border-bottom:1px solid rgba(230,232,239,.5)}
+    input,select{width:100%; border:1px solid var(--line); border-radius:14px; padding:12px 14px; font-size:14px; color:var(--ink); background:white; outline:none; font-family:inherit; transition:all .25s ease}
+    input:focus,select:focus{border-color:var(--brand2); box-shadow:0 0 0 3px rgba(80,103,255,.12)}
+    input::placeholder{color:#98a2b3}
+
+    /* ── KPIs ── */
     .kpis{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin:14px 0 22px}
-    .kpi{background:var(--card); border:1px solid var(--line); border-radius:18px; padding:16px; box-shadow:0 10px 26px rgba(26,33,54,.05)}
-    .kpi b{display:block; font-size:27px; color:var(--brand)} .kpi span{color:var(--muted); font-size:13px}
+    .kpi{background:var(--card); border:1px solid var(--line); border-radius:18px; padding:18px; box-shadow:var(--shadow-sm); transition:all .3s ease}
+    .kpi:hover{box-shadow:var(--shadow-md); transform:translateY(-2px)}
+    .kpi b{display:block; font-size:28px; color:var(--brand); font-weight:900} .kpi span{color:var(--muted); font-size:13px; font-weight:500}
+
+    /* ── Cards grid ── */
     .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
-    .card{background:var(--card); border:1px solid var(--line); border-radius:22px; padding:18px; box-shadow:0 10px 26px rgba(26,33,54,.06); display:flex; flex-direction:column; min-height:358px}
+    .card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow-sm); display:flex; flex-direction:column; min-height:358px; transition:all .35s cubic-bezier(.4,0,.2,1); opacity:0; animation:fadeInCard .5s ease forwards}
+    .card:hover{box-shadow:var(--shadow-lg); transform:translateY(-4px); border-color:rgba(80,103,255,.25)}
+    @keyframes fadeInCard{
+      from{opacity:0; transform:translateY(16px)}
+      to{opacity:1; transform:translateY(0)}
+    }
+
     .top{display:flex; justify-content:space-between; gap:12px; align-items:flex-start}
     .name{font-weight:900; font-size:21px; color:#101828}
     .cat{font-size:12px; color:var(--muted); margin-top:4px; line-height:1.35}
-    .medal{border-radius:999px; padding:7px 10px; color:white; font-weight:800; font-size:12px; white-space:nowrap}.m1{background:var(--gold)}.m2{background:var(--silver)}.m3{background:var(--bronze)}
-    .score{display:flex; align-items:center; gap:12px; margin:16px 0 12px; padding:13px; border-radius:16px; background:#fafbff; border:1px solid var(--line)}
-    .ring{--p:0; width:64px; height:64px; border-radius:50%; background:conic-gradient(var(--score-color) calc(var(--p)*1%), #e9edf5 0); display:grid; place-items:center; flex:0 0 auto}
-    .ring span{display:grid; place-items:center; width:48px; height:48px; border-radius:50%; background:white; font-weight:900; color:var(--ink)}
-    .scoretxt b{display:block; color:var(--score-color); font-size:14px}.scoretxt span{font-size:12px; color:var(--muted); line-height:1.35}
-    .chips{display:flex; flex-wrap:wrap; gap:8px; margin:10px 0}.chip{font-size:12px; padding:6px 9px; border-radius:999px; background:#f2f4f7; color:#344054; border:1px solid #eaecf0}.chip.mx{background:#ecfdf3;color:#067647;border-color:#abefc6}.chip.nomx{background:#fff7ed;color:#b54708;border-color:#fed7aa}.chip.low{background:#fef3f2;color:#b42318;border-color:#fecdca}
-    .row{margin-top:10px}.label{font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:#98a2b3; font-weight:800}.value{font-size:14px; line-height:1.45; margin-top:3px;color:#344054}.value a{color:var(--brand2);font-weight:700;text-decoration:none}.value a:hover{text-decoration:underline}
+    .medal{border-radius:999px; padding:7px 12px; color:white; font-weight:800; font-size:12px; white-space:nowrap; letter-spacing:.01em}
+    .m1{background:linear-gradient(135deg,#d4a017,#c69324)}.m2{background:linear-gradient(135deg,#9ba3b5,#8792a2)}.m3{background:linear-gradient(135deg,#bf7a35,#a9682a)}
+    .score{display:flex; align-items:center; gap:12px; margin:16px 0 12px; padding:14px; border-radius:16px; background:linear-gradient(135deg,#fafbff,#f5f7ff); border:1px solid var(--line)}
+    .ring{--p:0; width:64px; height:64px; border-radius:50%; background:conic-gradient(var(--score-color) calc(var(--p)*1%), #e9edf5 0); display:grid; place-items:center; flex:0 0 auto; transition:transform .4s ease}
+    .card:hover .ring{transform:scale(1.05)}
+    .ring span{display:grid; place-items:center; width:48px; height:48px; border-radius:50%; background:white; font-weight:900; color:var(--ink); font-size:15px}
+    .scoretxt b{display:block; color:var(--score-color); font-size:14px; font-weight:800}.scoretxt span{font-size:12px; color:var(--muted); line-height:1.35}
+    .chips{display:flex; flex-wrap:wrap; gap:8px; margin:10px 0}.chip{font-size:12px; padding:6px 10px; border-radius:999px; background:#f2f4f7; color:#344054; border:1px solid #eaecf0; font-weight:600; transition:all .2s ease}.chip:hover{background:#e8ebf0}
+    .chip.mx{background:#ecfdf3;color:#067647;border-color:#abefc6}.chip.mx:hover{background:#d1fadf}
+    .chip.nomx{background:#fff7ed;color:#b54708;border-color:#fed7aa}.chip.nomx:hover{background:#ffedd5}
+    .chip.low{background:#fef3f2;color:#b42318;border-color:#fecdca}.chip.low:hover{background:#fee4e2}
+    .row{margin-top:10px}.label{font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:#98a2b3; font-weight:800}.value{font-size:14px; line-height:1.45; margin-top:3px;color:#344054}.value a{color:var(--brand2);font-weight:700;text-decoration:none; transition:color .2s ease}.value a:hover{text-decoration:underline; color:#3a50e0}
     .foot{margin-top:auto; padding-top:12px; font-size:12px; color:var(--muted); border-top:1px dashed var(--line)}
     .hidden{display:none!important}
-    .section{margin-top:34px; background:white; border:1px solid var(--line); border-radius:22px; padding:22px; line-height:1.55; color:#344054}.section h2{margin:0 0 8px; color:var(--brand)}
-    table{border-collapse:collapse; width:100%; font-size:14px; margin-top:12px} th,td{border-bottom:1px solid var(--line); padding:10px; text-align:left; vertical-align:top} th{color:var(--brand); background:#f8f9ff}
+
+    /* ── Sections ── */
+    .section{margin-top:34px; background:white; border:1px solid var(--line); border-radius:var(--radius); padding:24px; line-height:1.55; color:#344054; box-shadow:var(--shadow-sm)}.section h2{margin:0 0 10px; color:var(--brand); font-weight:800; font-size:20px}
+    table{border-collapse:collapse; width:100%; font-size:14px; margin-top:12px} th,td{border-bottom:1px solid var(--line); padding:10px 12px; text-align:left; vertical-align:top} th{color:var(--brand); background:#f8f9ff; font-weight:800} td strong{color:var(--brand2)}
+
+    /* ── Footer ── */
+    .site-footer{background:linear-gradient(180deg,var(--bg),#e4e8f4); border-top:1px solid var(--line); margin-top:48px; padding:36px 6vw 32px}
+    .footer-inner{max-width:1280px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px}
+    .footer-author{display:flex; align-items:center; gap:12px}
+    .footer-avatar{width:42px; height:42px; border-radius:50%; background:linear-gradient(135deg,var(--brand),var(--brand2)); display:grid; place-items:center; color:white; font-weight:900; font-size:16px; letter-spacing:.02em}
+    .footer-info{font-size:14px; color:#344054; line-height:1.45}
+    .footer-info strong{color:var(--brand); font-weight:800}
+    .footer-info span{display:block; font-size:12px; color:var(--muted)}
+    .footer-right{font-size:12px; color:var(--muted); text-align:right; line-height:1.5}
+    .footer-right a{color:var(--brand2); font-weight:700; text-decoration:none}
+    .footer-right a:hover{text-decoration:underline}
+
+    /* ── No results ── */
+    .no-results{grid-column:1/-1; text-align:center; padding:60px 20px; color:var(--muted)}
+    .no-results svg{margin-bottom:12px; opacity:.4}
+    .no-results p{font-size:16px; font-weight:600}
+    .no-results span{font-size:14px}
+
+    /* ── Responsive ── */
     @media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}.controls{grid-template-columns:1fr 1fr}.kpis{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:640px){header,.wrap{padding-left:18px;padding-right:18px}.grid{grid-template-columns:1fr}.controls{grid-template-columns:1fr; position:static}.kpis{grid-template-columns:1fr}.card{min-height:auto}}
+    @media(max-width:640px){header,.wrap{padding-left:18px;padding-right:18px}.grid{grid-template-columns:1fr}.controls{grid-template-columns:1fr; position:static; border-bottom:none}.kpis{grid-template-columns:1fr}.card{min-height:auto}.header-top{flex-direction:column; align-items:flex-start}.footer-inner{flex-direction:column; text-align:center}.footer-right{text-align:center}.site-footer{padding-left:18px;padding-right:18px}}
   </style>
 </head>
 <body>
 <header>
-  <div class="eyebrow">Premios Rankia 2026 · Scorecard regulatorio</div>
+  <div class="header-top">
+    <div class="eyebrow">Premios Rankia 2026 · Scorecard regulatorio</div>
+    <div class="author-badge">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Ana Lorena Jiménez Preciado
+    </div>
+  </div>
   <h1>¿Qué tan regulados están los brokers y entidades galardonadas?</h1>
   <p class="lead">Scorecard comparativo de los ganadores vinculados con intermediación, inversión, fintechs y mercados. Se eliminaron personas, divulgadores, analistas y academias porque no tienen una regulación financiera comparable.</p>
-  <div class="notice"><strong>Lectura clave:</strong> “Regulado fuera de México” no significa que la entidad esté supervisada por la CNBV para clientes mexicanos. En brokers internacionales, la protección depende de la entidad legal con la que se abra la cuenta, el país de residencia y los términos contractuales.</div>
+  <div class="notice"><strong>Lectura clave:</strong> "Regulado fuera de México" no significa que la entidad esté supervisada por la CNBV para clientes mexicanos. En brokers internacionales, la protección depende de la entidad legal con la que se abra la cuenta, el país de residencia y los términos contractuales.</div>
 </header>
 <main class="wrap">
   <div class="controls">
@@ -77,9 +139,25 @@
   <section class="section">
     <h2>Notas metodológicas</h2>
     <p>Este tablero es informativo, no constituye recomendación de inversión ni asesoría legal. Antes de abrir una cuenta, conviene verificar directamente el contrato, la entidad legal, el regulador asignado, el esquema de custodia, la protección de saldo negativo, los costos, la disponibilidad para residentes de México y las restricciones por producto.</p>
-    <p>Se excluyeron: divulgadores, analistas, academias de formación, cTrader y ProRealTime como comparables directos, porque son personas, formación o tecnología/plataforma y no necesariamente intermediarios regulados que custodien recursos del cliente.</p>
+    <p style="margin-top:10px">Se excluyeron: divulgadores, analistas, academias de formación, cTrader y ProRealTime como comparables directos, porque son personas, formación o tecnología/plataforma y no necesariamente intermediarios regulados que custodien recursos del cliente.</p>
   </section>
 </main>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-author">
+      <div class="footer-avatar">AJ</div>
+      <div class="footer-info">
+        <strong>Ana Lorena Jiménez Preciado</strong>
+        <span>Análisis regulatorio · Proyecto informativo y educativo</span>
+      </div>
+    </div>
+    <div class="footer-right">
+      Fuentes: sitios corporativos de cada entidad, registros públicos de<br>
+      <strong>CNBV · CFTC · FCA · CySEC · ASIC</strong> y otros reguladores<br>
+      <a href="https://github.com/AnaJZP/scorecard_rankia" target="_blank" rel="noopener">Ver en GitHub</a> · Junio 2026
+    </div>
+  </div>
+</footer>
 <script>
 const data = [
  {name:'XTB',pos:'🥇 Primer lugar',cat:'Mejor bróker internacional para acciones',type:'Broker internacional',mx:'No',score:3,reg:'XTB Group: KNF en Polonia para XTB S.A.; para entidad internacional se menciona FSC Belice.',inst:'Acciones, ETFs, CFDs sobre índices, forex, materias primas y otros subyacentes según entidad.',note:'No se identificó autorización CNBV para operar como casa de bolsa en México.',src:'https://www.xtb.com/int/legal-information'},
@@ -112,7 +190,10 @@ function status(score){return score>=5?'Muy alto':score===4?'Alto':score===3?'Me
 function render(){
   const q=document.getElementById('q').value.toLowerCase(); const t=document.getElementById('type').value; const mx=document.getElementById('mx').value; const sc=document.getElementById('score').value;
   const filtered=data.filter(d=>{const hay=(d.name+d.cat+d.type+d.reg+d.inst+d.note).toLowerCase(); return (!q||hay.includes(q))&&(!t||d.type===t)&&(!mx||d.mx===mx)&&(!sc||String(d.score)===sc)});
-  cards.innerHTML=filtered.map(d=>`<article class="card" data-score="${d.score}">
+  if(filtered.length===0){
+    cards.innerHTML='<div class="no-results"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><p>Sin resultados</p><span>Intenta con otros filtros</span></div>';
+  } else {
+    cards.innerHTML=filtered.map((d,i)=>`<article class="card" data-score="${d.score}" style="animation-delay:${i*0.04}s">
     <div class="top"><div><div class="name">${d.name}</div><div class="cat">${d.cat}</div></div><div class="medal ${d.pos.includes('🥇')?'m1':d.pos.includes('🥈')?'m2':'m3'}">${d.pos}</div></div>
     <div class="score" style="--score-color:${color(d.score)}"><div class="ring" style="--p:${d.score*20}; --score-color:${color(d.score)}"><span>${d.score}/5</span></div><div class="scoretxt"><b>${status(d.score)} · score regulatorio</b><span>${d.mx==='Sí'?'Regulado en México':d.mx==='No'?'No regulado por CNBV / regulación fuera de México':'Regulación mexicana no clara'}</span></div></div>
     <div class="chips"><span class="chip">${d.type}</span><span class="chip ${d.mx==='Sí'?'mx':d.mx==='No'?'nomx':'low'}">México: ${d.mx}</span></div>
@@ -121,6 +202,7 @@ function render(){
     <div class="row"><div class="label">Observación</div><div class="value">${d.note}</div></div>
     <div class="foot">Fuente base: <a href="${d.src}" target="_blank" rel="noopener">sitio regulatorio / corporativo</a></div>
   </article>`).join('');
+  }
   document.getElementById('kTotal').textContent=filtered.length;
   document.getElementById('kMx').textContent=filtered.filter(d=>d.mx==='Sí').length;
   document.getElementById('kNoMx').textContent=filtered.filter(d=>d.mx==='No').length;
